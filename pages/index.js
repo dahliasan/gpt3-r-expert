@@ -1,10 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
-
+import MarkdownRenderer from '../components/markdownRenderer'
 import buildspaceLogo from '../assets/buildspace-logo.png'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Home = () => {
+  let placeholderInput =
+    'what is a statistical test that would allow me to analyse the number of chicks vs the average temperature to see if there is any correlation.'
+
   const [userInput, setUserInput] = useState('')
   const [apiOutput, setApiOutput] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
@@ -18,7 +23,7 @@ const Home = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userInput }),
+      body: JSON.stringify({ userInput: userInput || placeholderInput }),
     })
 
     const data = await response.json()
@@ -30,34 +35,33 @@ const Home = () => {
   }
 
   const onUserChangedText = (event) => {
-    console.log(event.target.value)
     setUserInput(event.target.value)
   }
 
   return (
     <div className="root">
       <Head>
-        <title>GPT-3 Writer | buildspace</title>
+        <title>AI R Expert</title>
       </Head>
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Get answers to your stats questions instantly</h1>
+            <h1>Get answers to your R questions instantly</h1>
           </div>
           <div className="header-subtitle">
-            <h2>
-              Ask your stats question and find out which statistical analysis to
-              use with R code examples.
-            </h2>
+            <h2>Ask a question and get answers with examples to do it in R</h2>
           </div>
         </div>
         <div className="prompt-container">
-          <textarea
-            placeholder="start typing here"
-            className="prompt-box"
-            value={userInput}
-            onChange={onUserChangedText}
-          />
+          <div className="prompt-box-container">
+            <textarea
+              placeholder={placeholderInput}
+              className="prompt-box"
+              value={userInput}
+              onChange={onUserChangedText}
+            />
+          </div>
+
           <div className="prompt-buttons">
             <a
               className={
@@ -69,7 +73,7 @@ const Home = () => {
                 {isGenerating ? (
                   <span className="loader"></span>
                 ) : (
-                  <p>Generate</p>
+                  <p>Ask 🙏</p>
                 )}
               </div>
             </a>
@@ -78,11 +82,11 @@ const Home = () => {
             <div className="output">
               <div className="output-header-container">
                 <div className="output-header">
-                  <h3>Output</h3>
+                  <h3>🌈 Here's your answer 🌈 </h3>
                 </div>
               </div>
               <div className="output-content">
-                <p>{apiOutput}</p>
+                <MarkdownRenderer markdown={apiOutput} />
               </div>
             </div>
           )}
@@ -100,6 +104,7 @@ const Home = () => {
           </div>
         </a>
       </div>
+      <ToastContainer />
     </div>
   )
 }

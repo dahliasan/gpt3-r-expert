@@ -6,15 +6,15 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration)
 const basePromptPrefix =
-  'Give me options for statistical analyses to answer the following question. Tell me the best analysis to do and why. Include example code in R to do the analysis and code for how I can check any test assumptions. Also tell me what I should look out for when checking assumptions. Question: '
+  'Provide a full detailed and specific example in R for following question. Make sure to explain why the recommended approach is appropriate in a way that is easy to understand and specific. If the question is related to statistics, also explain how to interpret the statistical outputs. Return the response as markdown and specify the code language as r. Question: '
+
 const generateAction = async (req, res) => {
   // Run first prompt
-  console.log(`API: ${basePromptPrefix}${req.body.userInput}`)
 
   const baseCompletion = await openai.createCompletion({
     model: 'text-davinci-003',
     prompt: `${basePromptPrefix}${req.body.userInput}`,
-    temperature: 0.8,
+    temperature: 0.05,
     max_tokens: 1000,
   })
 
