@@ -444,4 +444,5 @@ textarea {
   right: 10px;
   top: 10px;
   opacity: 0.7;
+  cursor: pointer;
 }
