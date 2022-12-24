@@ -1,5 +1,5 @@
 {
-  "name": "scratchpad",
+  "name": "gpt-tldr",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@next/font": "^13.1.0",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
     "framer-motion": "^6.5.1",
