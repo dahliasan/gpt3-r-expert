@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Quicksand&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -5,6 +7,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Quicksand', sans-serif;
 }
 
 h1,
@@ -13,12 +16,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--heading-font);
+  font-family: 'Nerko One', sans-serif;
 }
 
 p {
   line-height: 1.5;
-  font-family: var(--body-font);
 }
 
 .root {
@@ -442,5 +444,4 @@ textarea {
   right: 10px;
   top: 10px;
   opacity: 0.7;
-  cursor: pointer;
 }

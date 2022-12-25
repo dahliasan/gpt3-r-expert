@@ -7,8 +7,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const Home = () => {
-  let placeholderInput = `This is a chart of the price of a Bitmain S19 or other comparable mining machine with under 38 Joules (J) / Terahash (TH) efficiency. As we can see, the collateral value of an S19 has plummeted alongside the price of Bitcoin. Imagine you lent USD against these rigs. The miners you lent to tried to sell Bitcoin to provide more fiat to service your loan, but in the end couldn’t do so because marginal profitability declined. The miners then defaulted on their loans and handed over their machines — which are worth almost 80% less now than when the loan was undertaken — as repayment. We can guess that the most feverish point of loan origination was near the top of the market. Muppet lenders always buy the top and sell the bottom … every single fucking time!\nNow that CELs have collections of mining rigs that they can’t easily sell and can’t operate, they can try to sell them and recover some funds – but it’s going to be single digit cents on the dollar, given that new machines are trading 80% off from a year ago. They can’t operate a mining farm because they lack a data centre with cheap electricity. And that’s why the hashrate just disappears – because of an inability to turn the machines back on.\nGoing forward, if we believe that most – if not all – mining loans have been extinguished, and there is no new capital to be lent to miners, then we can expect miners to sell most – if not all – of the block reward they receive.
-`
+  let placeholderInput =
+    'what is a statistical test that would allow me to analyse the number of chicks vs the average temperature to see if there is any correlation.'
 
   const [userInput, setUserInput] = useState('')
   const [apiOutput, setApiOutput] = useState('')
@@ -17,20 +17,20 @@ const Home = () => {
   const callGenerateEndpoint = async () => {
     setIsGenerating(true)
 
-    console.log('Calling OpenAI...', userInput)
+    console.log('Calling OpenAI...')
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ text: userInput || placeholderInput }),
+      body: JSON.stringify({ userInput: userInput || placeholderInput }),
     })
 
     const data = await response.json()
     const { output } = data
-    console.log('OpenAI replied...', output)
+    console.log('OpenAI replied...', output.text)
 
-    setApiOutput(`${output}`)
+    setApiOutput(`${output.text}`)
     setIsGenerating(false)
   }
 
@@ -41,18 +41,15 @@ const Home = () => {
   return (
     <div className="root">
       <Head>
-        <title>read4me</title>
+        <title>AI R Expert</title>
       </Head>
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>Gimme the tldr version</h1>
+            <h1>Get answers to your R questions instantly</h1>
           </div>
           <div className="header-subtitle">
-            <h2>
-              Paste long article(s) here and generate a concise and clear
-              summary.
-            </h2>
+            <h2>Ask a question and get answers with examples to do it in R</h2>
           </div>
         </div>
         <div className="prompt-container">

@@ -1,24 +1,6 @@
-import './styles.css'
-import { Nunito, Varela_Round } from '@next/font/google'
-
-const nunito = Nunito({ subsets: ['latin'] })
-const varelaRound = Varela_Round({
-  weight: ['400'],
-  style: ['normal'],
-  subsets: ['latin'],
-})
+import './styles.css';
 
 function App({ Component, pageProps }) {
-  return (
-    <>
-      <style jsx global>{`
-        :root {
-          --body-font: ${nunito.style.fontFamily};
-          --heading-font: ${varelaRound.style.fontFamily};
-        }
-      `}</style>
-      <Component {...pageProps} />
-    </>
-  )
+  return <Component {...pageProps} />
 }
-export default App
+export default App;
