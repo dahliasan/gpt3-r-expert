@@ -6,7 +6,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration)
 const basePromptPrefix =
-  'Provide a full detailed and specific example in R for following question. Make sure to explain why the recommended approach is appropriate in a way that is easy to understand and specific. If the question is related to statistics, also explain how to interpret the statistical outputs. Return the response as markdown and specify the code language as r. Question: '
+  'You are an R code expert. Provide a full detailed and specific example in R for following question. Make sure to explain why the recommended approach is appropriate in a way that is easy to understand and specific. If the question is related to statistics, also explain how to interpret the statistical outputs. Return the response as markdown and specify the code language as r. Question: '
 
 const generateAction = async (req, res) => {
   // Run first prompt
@@ -14,7 +14,7 @@ const generateAction = async (req, res) => {
   const baseCompletion = await openai.createCompletion({
     model: 'text-davinci-003',
     prompt: `${basePromptPrefix}${req.body.userInput}`,
-    temperature: 0.05,
+    temperature: 0,
     max_tokens: 1000,
   })
 
